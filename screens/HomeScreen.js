@@ -40,7 +40,7 @@ export default function HomeScreen() {
           </View>
 
           <Text style={styles.getStartedText}>
-            Jackson pay attention
+            Brian pay attention
           </Text>
         </View>
 
