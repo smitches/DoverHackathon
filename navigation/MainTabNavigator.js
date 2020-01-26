@@ -1,7 +1,7 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createBottomTabNavigator, createTabNavigator } from 'react-navigation-tabs';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
@@ -9,6 +9,11 @@ import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import HomeyScreen from '../screens/HomeyScreen';
 import SearchScreen from '../screens/SearchScreen';
+
+
+import CartScreen from '../screens/CartScreen'
+import StoreScreen from '../screens/StoreScreen'
+
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -94,14 +99,17 @@ HomeyStack.navigationOptions = {
 
 HomeyStack.path = '';
 
-const SearchStack = createStackNavigator(
+
+const ProductStack = createStackNavigator(
   {
     Search: SearchScreen,
+    Cart: CartScreen,
+    Store: StoreScreen
   },
   config
 );
 
-SearchStack.navigationOptions = {
+ProductStack.navigationOptions = {
   tabBarLabel: 'Search',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -115,7 +123,7 @@ SearchStack.navigationOptions = {
   ),
 };
 
-SearchStack.path = '';
+ProductStack.path = '';
 
 
 const tabNavigator = createBottomTabNavigator({
@@ -123,7 +131,7 @@ const tabNavigator = createBottomTabNavigator({
   LinksStack,
   SettingsStack,
   HomeyStack,
-  SearchStack,
+  ProductStack,
 });
 
 tabNavigator.path = '';

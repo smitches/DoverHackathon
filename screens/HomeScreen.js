@@ -8,6 +8,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Button,
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
@@ -31,6 +32,8 @@ export default function HomeScreen() {
 
         <View style={styles.getStartedContainer}>
           <DevelopmentModeNotice />
+
+          <Button title='My Button' onClick={()=>{}} />
 
           <Text style={styles.getStartedText}>Get started by opening</Text>
 
