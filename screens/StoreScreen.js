@@ -31,8 +31,8 @@ const StoreScreen = props => {
     //   props.navigation.setParams({'cart':cart})
     return (
               <ScrollView>
-                <View style={{flex:1, justifyContent:'center'}}>
-                  <Text style={{textAlign:'center'}}>Store: {store.fuel_company + "'s " + store.name}</Text>
+                <View style={{flex:1, justifyContent:'center', marginVertical:10}}>
+                  <Text style={{textAlign:'center', fontSize:24}}>Store: {store.fuel_company + "'s " + store.name}</Text>
                   <Text style={{textAlign:'center'}}>Store Address: {store.address}</Text>
                 </View>
                 {storeProducts.map(product => (

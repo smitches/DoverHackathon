@@ -18,8 +18,8 @@ const CartScreen = props => {
     
     return (
         <ScrollView>
-                <View style={{flex:1, justifyContent:'center'}}>
-                  <Text style={{textAlign:'center'}}>Store: {store.fuel_company + "'s " + store.name}</Text>
+                <View style={{flex:1, justifyContent:'center', marginVertical:10}}>
+                  <Text style={{textAlign:'center', fontSize:24}}>Store: {store.fuel_company + "'s " + store.name}</Text>
                   <Text style={{textAlign:'center'}}>Store Address: {store.address}</Text>
                 </View>
                 {cart.map(product => (
@@ -32,7 +32,16 @@ const CartScreen = props => {
                 />
                   </View>
                 ))}
-                <Text>TOTAL SALE: ${computeTotalSale()}</Text>
+                <View style={{flex:1, flexDirection:'row', justifyContent:'space-around', height:50, alignItems:'center'}}>
+                    <Text>TOTAL SALE: ${computeTotalSale()}</Text>
+                    <Button title='Buy Now' onPress={()=>{
+                        var cartAugmented = []
+                        cart.forEach( item => cartAugmented = [...cartAugmented, {...item, sales_price: computeItemSalePrice(item)}])
+                        
+                        props.navigation.navigate({routeName: 'Wallet', params: {cart: cartAugmented, store:store}})
+                    }} />
+                </View>
+                
               </ScrollView>
     )
 }
@@ -45,12 +54,9 @@ CartScreen.navigationOptions = navigationData => {
     return {
         title: `CART: ${store.fuel_company} - ${store.name}`,
 
-        headerRight: <Button style={{marginRight:10}} title='Buy' onPress={()=>{
-            console.log('pushed button')
-            console.log('cart')
-            console.log(cart)
-            navigationData.navigation.navigate({routeName: 'Cart', params: {cart: cart, store:store}})
-        }}/>,
+        // headerRight: <Button style={{marginRight:10}} title='Buy' onPress={()=>{
+        //     navigationData.navigation.navigate({routeName: 'Wallet', params: {cart: cart, store:store}})
+        // }}/>,
     }
 }
 export default CartScreen

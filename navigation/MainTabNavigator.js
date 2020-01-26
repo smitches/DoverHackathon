@@ -13,7 +13,7 @@ import SearchScreen from '../screens/SearchScreen';
 
 import CartScreen from '../screens/CartScreen'
 import StoreScreen from '../screens/StoreScreen'
-
+import WalletScreen from '../screens/WalletScreen'
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -69,7 +69,7 @@ const SettingsStack = createStackNavigator(
 SettingsStack.navigationOptions = {
   tabBarLabel: 'Settings',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-settings' : 'md-settings'} />
   ),
 };
 
@@ -125,13 +125,38 @@ ProductStack.navigationOptions = {
 
 ProductStack.path = '';
 
+const WalletStack = createStackNavigator(
+  {
+    Wallet: WalletScreen,
+  },
+  config
+);
+
+WalletStack.navigationOptions = {
+  tabBarLabel: 'Wallet',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? 'ios-wallet'
+          : 'md-wallet'
+      }
+    />
+  ),
+};
+
+WalletStack.path = '';
+
+
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
-  LinksStack,
-  SettingsStack,
-  HomeyStack,
+  // LinksStack,
+  // HomeyStack,
   ProductStack,
+  WalletStack,
+  SettingsStack,
 });
 
 tabNavigator.path = '';
