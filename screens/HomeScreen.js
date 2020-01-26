@@ -13,7 +13,7 @@ import {
 
 import { MonoText } from '../components/StyledText';
 
-export default function HomeScreen() {
+const HomeScreen = props => {
   return (
     <View style={styles.container}>
       <ScrollView
@@ -31,32 +31,25 @@ export default function HomeScreen() {
         </View>
 
         <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
+          
+          <Text style={{fontSize:24,textAlign:'center', marginBottom:10}}>Find a Convenience Store near You!</Text>
+          <Button title='Search Now' onPress={()=>{props.navigation.navigate('Search')}} />
 
-          <Button title='My Button' onClick={()=>{}} />
-
-          <Text style={styles.getStartedText}>Get started by opening</Text>
-
-          <View
-            style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-            <MonoText>screens/HomeScreen.js</MonoText>
-          </View>
-
-          <Text style={styles.getStartedText}>
-            Brian pay attention
+          <Text style={{...styles.getStartedText, marginTop:10}}>
+            Made Possible by Dover Fueling Solutions
           </Text>
         </View>
 
-        <View style={styles.helpContainer}>
+        {/* <View style={styles.helpContainer}>
           <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
             <Text style={styles.helpLinkText}>
-              Help, it didn’t automatically reload!
+            Made Possible by Dover Fueling Solutions
             </Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </ScrollView>
 
-      <View style={styles.tabBarInfoContainer}>
+      {/* <View style={styles.tabBarInfoContainer}>
         <Text style={styles.tabBarInfoText}>
           This is a tab bar. You can edit it in:
         </Text>
@@ -67,7 +60,7 @@ export default function HomeScreen() {
             navigation/MainTabNavigator.js
           </MonoText>
         </View>
-      </View>
+      </View> */}
     </View>
   );
 }
@@ -140,7 +133,7 @@ const styles = StyleSheet.create({
   },
   getStartedContainer: {
     alignItems: 'center',
-    marginHorizontal: 50,
+    marginHorizontal: 100,
   },
   homeScreenFilename: {
     marginVertical: 7,
@@ -199,3 +192,6 @@ const styles = StyleSheet.create({
     color: '#2e78b7',
   },
 });
+
+
+export default HomeScreen

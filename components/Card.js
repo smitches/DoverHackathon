@@ -5,7 +5,7 @@ import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native'
 const Card = props => {
     return (
     
-    <View style={styles.container}>
+    <View style={{...styles.container,borderBottomColor:props.color? props.color:'transparent', borderBottomWidth:5, paddingBottom:10}}>
         <View style={styles.imageView}>
             <Image
 			// source={require('../assets/Images/success.png')} 

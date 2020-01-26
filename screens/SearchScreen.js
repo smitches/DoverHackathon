@@ -4,6 +4,7 @@ import MapView, {Marker} from 'react-native-maps';
 import * as Location from 'expo-location'
 import LocationPicker from '../components/LocationPicker'
 import Card from '../components/Card'
+import Colors from '../constants/Colors'
 
 const SearchScreen = props => {
   const [region, setRegion] = useState(
@@ -40,6 +41,7 @@ const SearchScreen = props => {
     let latDelta = region.latitudeDelta
     let lngDelta = region.longitudeDelta
     let url = `https://dfscstore.azurewebsites.net/getstores?lat=${lat}&lng=${lng}&latdiff=1&longdiff=1`
+    console.log(url)
     return fetch(url)
       .then((response) => response.json())
       .then((responseJson) => { setStores(responseJson)
@@ -56,7 +58,7 @@ const SearchScreen = props => {
   }
   
   var map = <MapView style={styles.mapStyle} />
-  console.log(loading, stores)
+  // console.log(loading, stores)
   if (!loading){ 
     console.log('rerendering map definition')
     map = (
@@ -110,9 +112,10 @@ const SearchScreen = props => {
       }}>
     <Card 
     key={store.store_id} 
-    imageUri='https://tinyurl.com/buceepic' 
+    imageUri={store.url}
     title={store.fuel_company +': ' + store.name}
     description={store.address}
+    color={Colors[store.fuel_company]}
     />
     </TouchableOpacity>
     ))}
