@@ -5,8 +5,7 @@ import * as Location from 'expo-location'
 import LocationPicker from '../components/LocationPicker'
 import Card from '../components/Card'
 
-
-export default function SearchScreen() {
+const SearchScreen = props => {
   const [region, setRegion] = useState(
     {
       // region: 
@@ -29,19 +28,7 @@ export default function SearchScreen() {
   //     setLoading(true)
   //   }
   // })
-  function getProductsFromStoreAsync(){
-    let url = `https://dfscstore.azurewebsites.net/getproducts/${selectedStore}`
-    return fetch(url)
-      .then((response) => response.json())
-      .then((responseJson) => { setStoreProducts(responseJson)
-        console.log('got store products')
-        setLoadingProducts(false)
-        // return responseJson.stores;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
+  
   
 
   function getStoresFromApiAsync() {
@@ -113,10 +100,14 @@ export default function SearchScreen() {
     error => Alert.alert(error.message),
     {enableHighAccuracy: true, timeout: 20000, maximumAge:10000})
   }
+
+
   var returnValue = (<ScrollView style={styles.container}>   
   {map}
     {stores.map(store => (
-      <TouchableOpacity onPress={setSelectedStoreValue.bind(this,store.store_id)}>
+      <TouchableOpacity onPress={() => {
+        props.navigation.navigate({routeName: 'Store', params: {store: store, cart: []}})
+      }}>
     <Card 
     key={store.store_id} 
     imageUri='https://tinyurl.com/buceepic' 
@@ -127,41 +118,7 @@ export default function SearchScreen() {
     ))}
     
   </ScrollView>)
-  console.log(selectedStore)
   
-  if (selectedStore){
-    console.log(loadingProducts)
-    console.log(storeProducts)
-    
-    if (loadingProducts){
-      getProductsFromStoreAsync()
-      returnValue = <Text>Loading Products</Text>
-    }
-
-    else{
-      returnValue = (
-        <ScrollView>
-          <View>
-            <Text>
-            </Text>
-          </View>
-          {storeProducts.map(product => (
-            <View>
-            <Card
-            key={product.sku}
-            imageUri={product.imageurl}
-            title={product.product}
-            description={`$${product.price} (max discount ${product.discount})`}
-          />
-            <Button title='Add to cart' onClick={((productObject) => setCart([...cart, productObject])).bind(this, product)}/>
-            </View>
-          ))}
-        </ScrollView>
-      )
-    }
-
-
-  }
   return (returnValue);
 }
 
@@ -180,3 +137,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height * .4,
   }
 });
+
+
+
+export default SearchScreen
