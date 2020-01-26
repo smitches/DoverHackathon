@@ -14,8 +14,8 @@ const Card = props => {
 			fadeDuration={1000} />
         </View>
         <View style={styles.textContainer}>
-            <Text>{props.title}</Text>
-            <Text>{props.description}</Text>
+            <Text style={{fontSize:18,fontWeight:'bold'}}>{props.title}</Text>
+            <Text style={{fontSize:18}}>{props.description}</Text>
         </View>
     </View>)
     

@@ -32,8 +32,8 @@ const StoreScreen = props => {
     return (
               <ScrollView>
                 <View style={{flex:1, justifyContent:'center', marginVertical:10}}>
-                  <Text style={{textAlign:'center', fontSize:24}}>Store: {store.fuel_company + "'s " + store.name}</Text>
-                  <Text style={{textAlign:'center'}}>Store Address: {store.address}</Text>
+                  <Text style={{textAlign:'center', fontSize:24, fontWeight:'bold'}}>Store: {store.fuel_company + "'s " + store.name}</Text>
+                  <Text style={{textAlign:'center', fontSize:18}}>Address: {store.address}</Text>
                 </View>
                 {storeProducts.map(product => (
                   <View style={{borderColor:'#000',borderWidth:2}}>

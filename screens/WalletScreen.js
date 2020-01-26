@@ -7,6 +7,7 @@ const WalletScreen = props => {
     const [orderNum, setOrderNum] = useState(0)
     
     const cart = props.navigation.getParam('cart')
+    const store = props.navigation.getParam('store')
     if (cart){
 
         function postPurchasesAync(){
@@ -24,7 +25,10 @@ const WalletScreen = props => {
                 postArray = [...postArray, {sku:key,quantity:itemsOrdered[key]['quantity'],price:itemsOrdered[key]['price']}]
             }
             console.log('post array is', postArray)
-            fetch("https://dfscstore.azurewebsites.net/checkout/1/'shikha'", {
+            console.log('store is', store)
+            console.log(`https://dfscstore.azurewebsites.net/checkout/${store.store_id}/'aditya166@gmail.com'`)
+
+            fetch(`https://dfscstore.azurewebsites.net/checkout/${store.store_id}/'aditya166@gmail.com'`, {
                     method: 'POST',
                     headers: {
                         Accept: 'application/json',
